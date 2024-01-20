@@ -1,4 +1,5 @@
-#include "JsonHandler.h"
+#include "Session.h"
+
 
 int main(int argc, char **argv) 
 {
@@ -9,15 +10,10 @@ int main(int argc, char **argv)
         exit(1);
     }
 
-    std::cout << "SPLFLIX is now on! \n";
 
-    JsonHandler json_handler(argv[1]);
+    Session session(argv[1]);
+    session.start();
 
-    std::cout << "\n\n(MOVIES)";
-    json_handler.get_movies();
     
-    std::cout << "\n\n(TV SHOWS)";
-    json_handler.get_tv_series();
-
     return 0;
 }

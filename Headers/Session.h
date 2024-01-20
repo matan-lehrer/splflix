@@ -12,14 +12,16 @@ class Session
 {
 
     private:
-        std::vector<Watchable> available_watching_content;
-        std::vector<User> users;
-        std::vector<User> current_active_users;
+        std::vector<Watchable> m_available_watching_content;
+        std::vector<User> m_users;
+        std::vector<User> m_current_active_users;
         // maybe turn into string and have action print the log
         // and use return value to push back vector
-        std::vector<BaseAction> action_log; 
-        JsonHandler json_handler;
+        std::vector<BaseAction> m_action_log; 
+        JsonHandler m_json_handler;
 
     public:
+        Session(std::string config_path);
+        void start();
 
 };
