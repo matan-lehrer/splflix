@@ -14,7 +14,6 @@ void BaseAction::error(std::string err_msg)
 }
 
 
-
 // CreateUser
 void CreateUser::act(Session& sess)
 {

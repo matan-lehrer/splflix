@@ -6,6 +6,7 @@
 #include "Action.h"
 #include "JsonHandler.h"
 
+class BaseAction;
 
 class Session
 {

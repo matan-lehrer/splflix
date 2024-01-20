@@ -4,6 +4,7 @@
 #include <string>
 #include "Session.h"
 
+class Session;
 
 class Watchable
 {
@@ -14,7 +15,7 @@ class Watchable
         std::vector<std::string> tags;
 
     public:
-        virtual Watchable* get_next_watchable(const Session&) = 0;
+        virtual Watchable* get_next_watchable(const Session& session) = 0;
 
 };
 
@@ -22,12 +23,12 @@ class Watchable
 class Movies : Watchable
 {
     public:
-        Watchable* get_next_watchable(const Session&) = 0;
+        Watchable* get_next_watchable(const Session& session);
 };
 
 
 class Episode : Watchable
 {
     public:
-        Watchable* get_next_watchable(const Session&) = 0;
+        Watchable* get_next_watchable(const Session& session);
 };

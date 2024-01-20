@@ -5,6 +5,7 @@
 #include <string>
 #include "Watchable.h"
 
+class Watchable;
 
 class User
 {

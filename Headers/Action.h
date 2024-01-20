@@ -1,10 +1,12 @@
 #pragma once
 
-
 #include <iostream>
 #include <vector>
 #include <string>
 #include "Session.h"
+
+
+class Session;
 
 
 enum Flag
@@ -25,7 +27,7 @@ class BaseAction
 
 
     public:
-        virtual void act(Session& sess) = 0;
+        virtual void act(Session& session) = 0;
         virtual std::string to_string() = 0;
 };
 
@@ -33,7 +35,7 @@ class BaseAction
 class CreateUser : BaseAction
 {
     public:
-        void act(Session& sess);
+        void act(Session& session);
         std::string to_string();
 };
 
@@ -41,7 +43,7 @@ class CreateUser : BaseAction
 class ChangeActiveUser : BaseAction
 {
     public:
-        void act(Session& sess);
+        void act(Session& session);
         std::string to_string();
 };
 
@@ -49,7 +51,7 @@ class ChangeActiveUser : BaseAction
 class DeleteUser : BaseAction
 {
     public:
-        void act(Session& sess);
+        void act(Session& session);
         std::string to_string();
 
 };
@@ -58,7 +60,7 @@ class DeleteUser : BaseAction
 class DuplicateUser : BaseAction
 {
     public:
-        void act(Session& sess);
+        void act(Session& session);
         std::string to_string();
 };
 
@@ -66,7 +68,7 @@ class DuplicateUser : BaseAction
 class PrintContentList : BaseAction
 {
     public:
-        void act(Session& sess);
+        void act(Session& session);
         std::string to_string();
 };
 
@@ -74,7 +76,7 @@ class PrintContentList : BaseAction
 class PrintWatchHistory : BaseAction
 {
     public:
-        void act(Session& sess);
+        void act(Session& session);
         std::string to_string();
 
 };
@@ -83,7 +85,7 @@ class PrintWatchHistory : BaseAction
 class Watch : BaseAction
 {
     public:
-        void act(Session& sess);
+        void act(Session& session);
         std::string to_string();
 
 };
@@ -92,7 +94,7 @@ class Watch : BaseAction
 class PrintActionLog : BaseAction
 {
     public:
-        void act(Session& sess);
+        void act(Session& session);
         std::string to_string();
 
 };
@@ -101,7 +103,7 @@ class PrintActionLog : BaseAction
 class Exit : BaseAction
 {
     public:
-        void act(Session& sess);
+        void act(Session& session);
         std::string to_string();
 
 };
