@@ -21,19 +21,19 @@ class User
 };
 
 
-class LengthBasedUser : User
+class LengthBasedUser : public User
 {
 
 };
 
 
-class RerunBasedUser : User
+class RerunBasedUser : public User
 {
 
 };
 
 
-class SimilarGenreBasedUser : User
+class SimilarGenreBasedUser : public User
 {
 
 };

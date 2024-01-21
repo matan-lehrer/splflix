@@ -20,14 +20,14 @@ class Watchable
 };
 
 
-class Movies : Watchable
+class Movies : public Watchable
 {
     public:
         Watchable* get_next_watchable(const Session& session);
 };
 
 
-class Episode : Watchable
+class Episode : public Watchable
 {
     public:
         Watchable* get_next_watchable(const Session& session);

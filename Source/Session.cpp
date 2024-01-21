@@ -9,7 +9,7 @@ Session::Session(std::string config_path)
 
 void Session::start()
 {
-    std::cout << "SPLFLIX is now on! \n";
+    std::cout << "\nSPLFLIX is now on! \n";
 
     std::cout << "\n\n(MOVIES)";
     m_json_handler.get_movies();

@@ -32,7 +32,7 @@ class BaseAction
 };
 
 
-class CreateUser : BaseAction
+class CreateUser : public BaseAction
 {
     public:
         void act(Session& session);
@@ -40,7 +40,7 @@ class CreateUser : BaseAction
 };
 
 
-class ChangeActiveUser : BaseAction
+class ChangeActiveUser : public BaseAction
 {
     public:
         void act(Session& session);
@@ -48,32 +48,7 @@ class ChangeActiveUser : BaseAction
 };
 
 
-class DeleteUser : BaseAction
-{
-    public:
-        void act(Session& session);
-        std::string to_string();
-
-};
-
-
-class DuplicateUser : BaseAction
-{
-    public:
-        void act(Session& session);
-        std::string to_string();
-};
-
-
-class PrintContentList : BaseAction
-{
-    public:
-        void act(Session& session);
-        std::string to_string();
-};
-
-
-class PrintWatchHistory : BaseAction
+class DeleteUser : public BaseAction
 {
     public:
         void act(Session& session);
@@ -82,7 +57,23 @@ class PrintWatchHistory : BaseAction
 };
 
 
-class Watch : BaseAction
+class DuplicateUser : public BaseAction
+{
+    public:
+        void act(Session& session);
+        std::string to_string();
+};
+
+
+class PrintContentList : public BaseAction
+{
+    public:
+        void act(Session& session);
+        std::string to_string();
+};
+
+
+class PrintWatchHistory : public BaseAction
 {
     public:
         void act(Session& session);
@@ -91,7 +82,7 @@ class Watch : BaseAction
 };
 
 
-class PrintActionLog : BaseAction
+class Watch : public BaseAction
 {
     public:
         void act(Session& session);
@@ -100,7 +91,16 @@ class PrintActionLog : BaseAction
 };
 
 
-class Exit : BaseAction
+class PrintActionLog : public BaseAction
+{
+    public:
+        void act(Session& session);
+        std::string to_string();
+
+};
+
+
+class Exit : public BaseAction
 {
     public:
         void act(Session& session);
