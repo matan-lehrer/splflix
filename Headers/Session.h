@@ -5,6 +5,7 @@
 #include "User.h"
 #include "Action.h"
 #include "JsonHandler.h"
+#include "Utilities.h"
 
 class BaseAction;
 class Movies;

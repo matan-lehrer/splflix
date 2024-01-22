@@ -61,17 +61,25 @@ void Session::print_available_content()
         std::cout << "id: " << movie.get_id() << "\n";
         std::cout << "name: " << movie.get_name()<< "\n";
         std::cout << "first tag: " << movie.get_tags().at(0) << "\n";
-        std::cout << "length: " << movie.get_length()<< "\n\n";
-
+        std::cout << "length: " << movie.get_length()<< "\n";
+        std::cout << "tags: ";
+        print_vector<std::string>(movie.get_tags());
+        std::cout << "\n";
     }
 
     for(auto episode : m_available_episodes_content){
         std::cout << "\n(Episode)\n";
         std::cout << "id: " << episode.get_id() << "\n";
         std::cout << "name: " << episode.get_name()<< "\n";
-        std::cout << "first tag: " << episode.get_tags().at(0) << "\n";
-        std::cout << "first season: " << episode.get_seasons().at(0) << "\n";
-        std::cout << "length: " << episode.get_length()<< "\n\n";
+        std::cout << "length: " << episode.get_length()<< "\n";
+        
+        std::cout << "seasons: ";
+        print_vector<int>(episode.get_seasons());
+        
+        std::cout << "tags: ";
+        print_vector<std::string>(episode.get_tags());
+        
+        std::cout << "\n";
 
     }
 }
