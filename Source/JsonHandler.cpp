@@ -27,10 +27,17 @@ void JsonHandler::get_movies()
 }
 
 
-void JsonHandler::get_tv_series()
+void JsonHandler::get_episodes()
 {
-    rapidjson::Value& tv_series = this->m_doc["tv_series"];
-    for(auto& tv_show : tv_series.GetArray()){
+    rapidjson::Value& episodes = this->m_doc["tv_series"];
+    for(auto& tv_show : episodes.GetArray()){
         std::cout << "\n" << tv_show["name"].GetString();
     }
 }
+
+
+rapidjson::Document& JsonHandler::get_doc() 
+{
+    return this->m_doc;
+}
+
