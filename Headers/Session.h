@@ -8,16 +8,29 @@
 #include "JsonHandler.h"
 #include "Utilities.h"
 
+// Actions
 class BaseAction;
+class CreateUser;
+class ChangeActiveUser;
+class DeleteUser;
+class DuplicateUser;
+class PrintContentList;
+class PrintWatchHistory;
+class PrintActionLog;
+class Watch;
+class Exit;
 
+// Watchables
 class Watchable;
 class Movies;
 class Episode;
 
+// Users
 class User;
 class LengthBasedUser;
 class RerunBasedUser;
 class SimilarGenreBasedUser;
+
 
 class Session
 {

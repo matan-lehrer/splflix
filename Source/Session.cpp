@@ -6,7 +6,7 @@ Session::Session(std::string config_path)
 {
     fill_available_content();
     init_default_user();
-    
+
     m_current_active_users.reserve(5);
     m_action_log.reserve(10);
 }
@@ -22,6 +22,7 @@ void Session::fill_available_content()
     tags.reserve(5);
     seasons.reserve(10);
 
+    // fill movies
     rapidjson::Value& movies = m_json_handler.get_doc()["movies"];
     for(auto& movie : movies.GetArray()){
         id++;
@@ -38,6 +39,7 @@ void Session::fill_available_content()
                                                 tags)));
     }
 
+    // fill episodes
     rapidjson::Value& episodes = m_json_handler.get_doc()["tv_series"];
     for(auto& episode : episodes.GetArray()){
         id++;
@@ -66,9 +68,6 @@ void Session::init_default_user()
 {
     m_users.reserve(5);
     m_users.emplace_back(std::make_unique<LengthBasedUser>(LengthBasedUser("default")));
-
-    // std::cout << "Users length: " << m_users.size() << "\n";
-    // std::cout << "User name: " << m_users[0]->get_name() << "\n\n";
 }
 
 
