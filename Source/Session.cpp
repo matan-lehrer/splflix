@@ -103,17 +103,16 @@ std::vector<std::string> Session::user_input()
     for(auto& action : m_action_menu){
         std::cout << "<" << action->to_string() << "> \n";
     }
-
     std::cout << "\n";
-    std::cin >> user_input;
-
+    
+    std::getline(std::cin, user_input);
     std::istringstream iss(user_input);
-
-    for(std::string s; iss >> s; )
+    for(std::string s; iss >> s; ) {
+        std::transform(s.begin(), s.end(), s.begin(), ::tolower);
         result.push_back(s);
+    }
     
     return result;
-
 }
 
 void Session::start()
@@ -124,10 +123,10 @@ void Session::start()
 
     while(true){
         parsed_user_input = user_input();
-        std::cout << "parsed input size is: " << parsed_user_input.size() << "\n";
-        std::cout << "parsed input is: \n";
+        std::cout << "input is: ";
         print_vector<std::string>(parsed_user_input);
     }
 
     
 }
+

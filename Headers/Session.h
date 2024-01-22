@@ -3,6 +3,7 @@
 #include <vector>
 #include <memory>
 #include <sstream>
+#include <algorithm>
 #include "Watchable.h"
 #include "User.h"
 #include "Action.h"
