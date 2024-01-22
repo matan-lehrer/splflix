@@ -16,7 +16,12 @@ class Watchable
 
     public:
         Watchable (int id, std::string name, int length, std::vector<std::string> tags);
+        
         virtual Watchable* get_next_watchable(const Session& session) = 0;
+        int get_id() const;
+        std::string get_name() const;
+        int get_length() const;
+        std::vector<std::string> get_tags() const;
 
 };
 
