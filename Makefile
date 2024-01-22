@@ -12,7 +12,7 @@
 
 TARGET = output
 CXX = g++
-CXXFLAGS = -g -std=c++11 -I $(HDR_DIR)
+CXXFLAGS = -g -I $(HDR_DIR)
 # -Wall -Weffc++
 
 HDR_DIR = Headers/

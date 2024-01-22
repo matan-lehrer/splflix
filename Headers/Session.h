@@ -1,6 +1,7 @@
 #pragma once 
 
 #include <vector>
+#include <memory>
 #include "Watchable.h"
 #include "User.h"
 #include "Action.h"
@@ -11,6 +12,11 @@ class BaseAction;
 class Movies;
 class Episode;
 
+class User;
+class LengthBasedUser;
+class RerunBasedUser;
+class SimilarGenreBasedUser;
+
 class Session
 {
 
@@ -19,7 +25,7 @@ class Session
         std::vector<Movies> m_available_movies_content;
         std::vector<Episode> m_available_episodes_content;
 
-        std::vector<User> m_users;
+        std::vector<std::unique_ptr<User>> m_users;
         std::vector<User> m_current_active_users;
         std::vector<BaseAction> m_action_log; 
         JsonHandler m_json_handler;

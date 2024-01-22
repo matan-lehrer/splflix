@@ -61,7 +61,7 @@ void Session::fill_available_content()
 void Session::fill_users()
 {
     m_users.reserve(5);
-    m_users.emplace_back(LengthBasedUser("default"));
+    m_users.emplace_back(std::make_unique<LengthBasedUser>(LengthBasedUser("default")));
 }
 
 
