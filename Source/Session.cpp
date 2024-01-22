@@ -11,19 +11,18 @@ Session::Session(std::string config_path)
 
 void Session::fill_available_content()
 {
-
-    m_available_watching_content.reserve(15);
-
     int id = 0;
     std::vector<std::string> tags;
-    tags.reserve(5);
-
     std::vector<int> seasons;
-    tags.reserve(10);
+
+    m_available_watching_content.reserve(15);   
+    tags.reserve(5);
+    seasons.reserve(10);
 
     rapidjson::Value& movies = m_json_handler.get_doc()["movies"];
     for(auto& movie : movies.GetArray()){
-
+        id++;
+        
         tags.clear();
         for (auto& tag : movie["tags"].GetArray()) {
             tags.push_back(tag.GetString());
@@ -34,12 +33,12 @@ void Session::fill_available_content()
                                                 movie["name"].GetString(), 
                                                 movie["length"].GetInt(),
                                                 tags)));
-        id++;
     }
 
     rapidjson::Value& episodes = m_json_handler.get_doc()["tv_series"];
     for(auto& episode : episodes.GetArray()){
-
+        id++;
+        
         tags.clear();
         for (auto& tag : episode["tags"].GetArray()) {
             tags.push_back(tag.GetString());
@@ -56,7 +55,6 @@ void Session::fill_available_content()
                                                 episode["episode_length"].GetInt(),
                                                 seasons,
                                                 tags)));
-        id++;
 }
 }
 
@@ -66,39 +64,16 @@ void Session::init_default_user()
     m_users.reserve(5);
     m_users.emplace_back(std::make_unique<LengthBasedUser>(LengthBasedUser("default")));
 
-    std::cout << "Users length: " << m_users.size() << "\n";
-    std::cout << "User name: " << m_users[0]->get_name() << "\n\n";
+    // std::cout << "Users length: " << m_users.size() << "\n";
+    // std::cout << "User name: " << m_users[0]->get_name() << "\n\n";
 }
 
 
 void Session::print_available_content()
 {
-    // for(auto movie : m_available_movies_content){
-    //     std::cout << "\n(MOVIE)\n";
-    //     std::cout << "id: " << movie.get_id() << "\n";
-    //     std::cout << "name: " << movie.get_name()<< "\n";
-    //     std::cout << "first tag: " << movie.get_tags().at(0) << "\n";
-    //     std::cout << "length: " << movie.get_length()<< "\n";
-    //     std::cout << "tags: ";
-    //     print_vector<std::string>(movie.get_tags());
-    //     std::cout << "\n";
-    // }
-
-    // for(auto episode : m_available_episodes_content){
-    //     std::cout << "\n(Episode)\n";
-    //     std::cout << "id: " << episode.get_id() << "\n";
-    //     std::cout << "name: " << episode.get_name()<< "\n";
-    //     std::cout << "length: " << episode.get_length()<< "\n";
-        
-    //     std::cout << "seasons: ";
-    //     print_vector<int>(episode.get_seasons());
-        
-    //     std::cout << "tags: ";
-    //     print_vector<std::string>(episode.get_tags());
-        
-    //     std::cout << "\n";
-
-    // }
+    for(const auto& watchable_content : m_available_watching_content){
+        watchable_content->print_description();
+    }
 }
 
 

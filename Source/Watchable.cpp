@@ -41,6 +41,17 @@ Watchable* Movies::get_next_watchable(const Session& session)
     return nullptr;
 }
 
+void Movies::print_description() const
+{
+    std::cout << "\n(MOVIE)\n";
+    std::cout << "id: " << this->m_id << "\n";
+    std::cout << "name: " << this->m_name << "\n";
+    std::cout << "length: " << this->m_length << "\n";
+    std::cout << "tags: ";
+        print_vector<std::string>(this->m_tags);
+    std::cout << "\n";
+}
+
 
 
 // Episodes
@@ -57,4 +68,18 @@ Watchable* Episode::get_next_watchable(const Session& session)
 std::vector<int> Episode::get_seasons() const
 {
     return this->m_seasons;
+}
+
+void Episode::print_description() const
+{
+    std::cout << "\n(EPISODE)\n";
+    std::cout << "id: " << this->m_id << "\n";
+    std::cout << "name: " << this->m_name << "\n";
+    std::cout << "length: " << this->m_length << "\n";
+    std::cout << "seasons: ";
+        print_vector<int>(this->m_seasons);
+    std::cout << "tags: ";
+        print_vector<std::string>(this->m_tags);
+    
+    std::cout << "\n";
 }
