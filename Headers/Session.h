@@ -41,10 +41,13 @@ class Session
         std::vector<std::unique_ptr<User>> m_users;
 
         std::vector<std::unique_ptr<User>> m_current_active_users;
-        std::vector<std::unique_ptr<BaseAction>> m_action_log; 
+        std::vector<std::unique_ptr<BaseAction>> m_action_log;
+        std::vector<std::unique_ptr<BaseAction>> m_action_menu;
+         
 
         void fill_available_content();
         void init_default_user();
+        void fill_action_menu();
 
     public:
         Session(std::string config_path);

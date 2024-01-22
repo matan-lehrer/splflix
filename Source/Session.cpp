@@ -6,6 +6,7 @@ Session::Session(std::string config_path)
 {
     fill_available_content();
     init_default_user();
+    fill_action_menu();
 
     m_current_active_users.reserve(5);
     m_action_log.reserve(10);
@@ -70,6 +71,20 @@ void Session::init_default_user()
     m_users.emplace_back(std::make_unique<LengthBasedUser>(LengthBasedUser("default")));
 }
 
+void Session::fill_action_menu()
+{
+    m_action_menu.reserve(10);
+    m_action_menu.emplace_back(std::make_unique<CreateUser>(CreateUser()));
+    m_action_menu.emplace_back(std::make_unique<ChangeActiveUser>(ChangeActiveUser()));
+    m_action_menu.emplace_back(std::make_unique<DeleteUser>(DeleteUser()));
+    m_action_menu.emplace_back(std::make_unique<DuplicateUser>(DuplicateUser()));
+    m_action_menu.emplace_back(std::make_unique<PrintContentList>(PrintContentList()));
+    m_action_menu.emplace_back(std::make_unique<PrintWatchHistory>(PrintWatchHistory()));
+    m_action_menu.emplace_back(std::make_unique<PrintActionLog>(PrintActionLog()));
+    m_action_menu.emplace_back(std::make_unique<Watch>(Watch()));
+    m_action_menu.emplace_back(std::make_unique<Exit>(Exit()));
+
+}
 
 void Session::print_available_content()
 {
@@ -83,10 +98,14 @@ void Session::start()
 {
     std::cout << "\nSPLFLIX is now on! \n";
 
-    // std::cout << "\n\n(episodeS)";
-    // m_json_handler.get_movies();
-    
-    // std::cout << "\n\n(TV SHOWS)";
-    // m_json_handler.get_episodes();
-
+    std::string user_input;
+    while(true){
+        std::cout << "\n\n(CHOOSE ACTION) \n\n\n"; 
+        for(auto& action : m_action_menu){
+            // index++;
+            std::cout << "<" << action->to_string() << "> \n";
+        }
+        std::cout << "\n";
+        std::cin >> user_input;
+    }
 }
