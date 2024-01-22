@@ -32,8 +32,9 @@ void Session::start()
 
             if(is_valid_action(action)){
                 this->m_action_menu.at(action)->act(*this);
+                m_action_log.push_back(parsed_user_input);
             }
-            
+
             else{
                 std::cout << "\nno such action! \n" <<
                              "please try another action ...\n\n";
@@ -43,6 +44,11 @@ void Session::start()
     } catch (const BreakLoopException& e) {
         std::cout << e.what();
     }
+}
+
+std::vector<std::vector<std::string>> Session::get_action_log() const
+{
+    return m_action_log;
 }
 
 

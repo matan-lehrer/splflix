@@ -89,7 +89,9 @@ std::string PrintWatchHistory::to_string()
 // PrintActionLog
 void PrintActionLog::act(Session& sess)
 {
-
+    for(const auto& log: sess.get_action_log()){
+        print_vector<std::string>(log);
+    }
 }
 
 std::string PrintActionLog::to_string()

@@ -44,7 +44,7 @@ class Session
         std::vector<std::unique_ptr<Watchable>> m_available_watching_content;
         std::vector<std::unique_ptr<User>> m_users;
         std::vector<std::unique_ptr<User>> m_current_active_users;
-        std::vector<std::unique_ptr<std::string>> m_action_log;         
+        std::vector<std::vector<std::string>> m_action_log;         
 
         void fill_available_content();
         void init_default_user();
@@ -56,4 +56,6 @@ class Session
         Session(std::string config_path);
         void print_available_content();
         void start();
+
+        std::vector<std::vector<std::string>> get_action_log() const;
 };
