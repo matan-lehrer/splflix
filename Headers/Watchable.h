@@ -36,7 +36,10 @@ class Movies : public Watchable
 
 class Episode : public Watchable
 {
+    private:
+        std::vector<int> m_seasons;
+
     public:
-        Episode (int id, std::string name, int length, std::vector<std::string> tags);
+        Episode (int id, std::string name, int length, std::vector<int> seasons, std::vector<std::string> tags);
         Watchable* get_next_watchable(const Session& session);
 };

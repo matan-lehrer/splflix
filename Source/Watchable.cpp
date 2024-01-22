@@ -43,8 +43,8 @@ Watchable* Movies::get_next_watchable(const Session& session)
 
 
 // Episodes
-Episode::Episode (int id, std::string name, int length, std::vector<std::string> tags)
-:Watchable(id, name, length, tags)
+Episode::Episode (int id, std::string name, int length, std::vector<int> seasons, std::vector<std::string> tags)
+:m_seasons(seasons), Watchable(id, name, length, tags)
 {
 }
 
