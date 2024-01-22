@@ -8,8 +8,7 @@ Session::Session(std::string config_path)
     init_default_user();
     fill_available_content();
     fill_action_menu();
-
-    m_current_active_users.reserve(5);
+    
     m_action_log.reserve(10);
 }
 
@@ -39,7 +38,7 @@ void Session::start()
     }
 }
 
-std::vector<std::vector<std::string>> Session::get_action_log() const
+const std::vector<std::vector<std::string>>& Session::get_action_log() const
 {
     return m_action_log;
 }
@@ -48,6 +47,8 @@ const std::vector<std::unique_ptr<Watchable>>& Session::get_available_watching_c
 {
     return m_available_watching_content;
 }
+
+
 
 
 // private
@@ -105,7 +106,9 @@ void Session::fill_available_content()
 void Session::init_default_user()
 {
     m_users.reserve(5);
-    m_users.emplace_back(std::make_unique<LengthBasedUser>(LengthBasedUser("default")));
+    m_current_active_users = std::make_shared<LengthBasedUser>(LengthBasedUser("default"));
+    m_users.emplace_back(m_current_active_users);
+
 }
 
 void Session::fill_action_menu()

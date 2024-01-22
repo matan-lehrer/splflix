@@ -42,8 +42,8 @@ class Session
         JsonHandler m_json_handler;
         std::unordered_map<std::string, std::unique_ptr<BaseAction>> m_action_menu;
         std::vector<std::unique_ptr<Watchable>> m_available_watching_content;
-        std::vector<std::unique_ptr<User>> m_users;
-        std::vector<std::unique_ptr<User>> m_current_active_users;
+        std::shared_ptr<User> m_current_active_users;
+        std::vector<std::shared_ptr<User>> m_users;
         std::vector<std::vector<std::string>> m_action_log;         
 
         void fill_available_content();
@@ -56,7 +56,7 @@ class Session
         Session(std::string config_path);
         void start();
 
-        std::vector<std::vector<std::string>> get_action_log() const;
+        const std::vector<std::vector<std::string>>& get_action_log() const;
         const std::vector<std::unique_ptr<Watchable>>& get_available_watching_content() const;
 
 };
