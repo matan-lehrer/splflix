@@ -23,6 +23,8 @@ class Session
         std::vector<BaseAction> m_action_log; 
         JsonHandler m_json_handler;
 
+        void fill_available_content();
+
     public:
         Session(std::string config_path);
         void print_available_content();
