@@ -4,11 +4,16 @@
 Session::Session(std::string config_path)
 :m_json_handler(config_path)
 {
-    // m_json_handler.get_doc();
+    // std::vector<std::string> tags;
+    // tags.reserve(5);
     m_available_movies_content.reserve(10);
+
     rapidjson::Value& movies = m_json_handler.get_doc()["movies"];
     for(auto& movie : movies.GetArray()){
-        std::cout << "fucking works!!!\n";
+        m_available_movies_content.emplace_back(Movies( 1, 
+                                                        movie["name"].GetString(), 
+                                                        movie["length"].GetInt(),
+                                                        {"fucking tag"}));
     }
 }
 
