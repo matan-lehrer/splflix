@@ -29,6 +29,7 @@ std::vector<std::string> Watchable::get_tags() const
 
 
 
+
 // Movies
 Movies::Movies (int id, std::string name, int length, std::vector<std::string> tags)
 :Watchable(id, name, length, tags)
@@ -51,4 +52,9 @@ Episode::Episode (int id, std::string name, int length, std::vector<int> seasons
 Watchable* Episode::get_next_watchable(const Session& session)
 {
     return nullptr;
+}
+
+std::vector<int> Episode::get_seasons() const
+{
+    return this->m_seasons;
 }

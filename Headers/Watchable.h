@@ -22,7 +22,6 @@ class Watchable
         std::string get_name() const;
         int get_length() const;
         std::vector<std::string> get_tags() const;
-
 };
 
 
@@ -42,4 +41,6 @@ class Episode : public Watchable
     public:
         Episode (int id, std::string name, int length, std::vector<int> seasons, std::vector<std::string> tags);
         Watchable* get_next_watchable(const Session& session);
+        std::vector<int> get_seasons() const;
+
 };

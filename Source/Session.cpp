@@ -13,6 +13,9 @@ void Session::fill_available_content()
     std::vector<std::string> tags;
     tags.reserve(5);
 
+    std::vector<int> seasons;
+    tags.reserve(10);
+
     m_available_movies_content.reserve(10);
 
     rapidjson::Value& movies = m_json_handler.get_doc()["movies"];
@@ -34,13 +37,18 @@ void Session::fill_available_content()
 
         tags.clear();
         for (auto& tag : episode["tags"].GetArray()) {
-        tags.push_back(tag.GetString());
+            tags.push_back(tag.GetString());
+        }
+
+        seasons.clear();
+        for (auto& season : episode["seasons"].GetArray()) {
+            seasons.push_back(season.GetInt());
         }
 
         m_available_episodes_content.emplace_back(Episode( 1, 
                                                             episode["name"].GetString(), 
                                                             episode["episode_length"].GetInt(),
-                                                            {10, 20, 30, 40},
+                                                            seasons,
                                                             tags));
 }
 }
@@ -62,6 +70,7 @@ void Session::print_available_content()
         std::cout << "id: " << episode.get_id() << "\n";
         std::cout << "name: " << episode.get_name()<< "\n";
         std::cout << "first tag: " << episode.get_tags().at(0) << "\n";
+        std::cout << "first season: " << episode.get_seasons().at(0) << "\n";
         std::cout << "length: " << episode.get_length()<< "\n\n";
 
     }
