@@ -31,8 +31,8 @@ void Session::start()
             std::string action = parsed_user_input.at(0);
 
             if(is_valid_action(action)){
-                this->m_action_menu.at(action)->act(*this);
                 m_action_log.push_back(parsed_user_input);
+                this->m_action_menu.at(action)->act(*this);
             }
 
             else{
@@ -128,12 +128,12 @@ std::vector<std::string> Session::get_user_input()
     std::string user_input;
     std::vector<std::string> result;
 
-    std::cout << "\n\n(CHOOSE ACTION) \n\n\n"; 
+    std::cout << "\n\n___________(ACTION MENU)___________ \n\n"; 
 
     for(auto& action : m_action_menu){
         std::cout << "<" << action.second->to_string() << "> \n";
     }
-    std::cout << "\n";
+    std::cout << "\n"; 
     
     std::getline(std::cin, user_input);
     std::istringstream iss(user_input);
