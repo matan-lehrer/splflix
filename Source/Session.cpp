@@ -5,8 +5,8 @@
 Session::Session(std::string config_path)
 :m_json_handler(config_path)
 {
-    fill_available_content();
     init_default_user();
+    fill_available_content();
     fill_action_menu();
 
     m_current_active_users.reserve(5);
@@ -25,22 +25,21 @@ void Session::start()
     std::cout << "\nSPLFLIX is now on! \n";
 
     std::vector<std::string> parsed_user_input;
-
-
     try {
-        while(true){
+        while(true) {
             parsed_user_input = get_user_input();
             std::string action = parsed_user_input.at(0);
+
             if(is_valid_action(action)){
                 this->m_action_menu.at(action)->act(*this);
             }
+            
             else{
-                std::cout << "no such action! \n " <<
+                std::cout << "\nno such action! \n" <<
                              "please try another action ...\n\n";
+                continue;
             }
-
         }
-
     } catch (const BreakLoopException& e) {
         std::cout << e.what();
     }

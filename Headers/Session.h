@@ -40,9 +40,9 @@ class Session
 
     private:
         JsonHandler m_json_handler;
+        std::map<std::string, std::unique_ptr<BaseAction>> m_action_menu;
         std::vector<std::unique_ptr<Watchable>> m_available_watching_content;
         std::vector<std::unique_ptr<User>> m_users;
-        std::map<std::string, std::unique_ptr<BaseAction>> m_action_menu;
         std::vector<std::unique_ptr<User>> m_current_active_users;
         std::vector<std::unique_ptr<std::string>> m_action_log;         
 
@@ -50,7 +50,6 @@ class Session
         void init_default_user();
         void fill_action_menu();
         bool is_valid_action(const std::string action_input);
-
         std::vector<std::string> get_user_input();
 
     public:
