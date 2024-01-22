@@ -25,6 +25,7 @@ class Session
 
     public:
         Session(std::string config_path);
+        void print_available_content();
         void start();
 
 };

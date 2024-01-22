@@ -24,8 +24,11 @@ Session::Session(std::string config_path)
                                                             {10, 20, 30, 40},
                                                             {"fucking tag"}));
     }
+}
 
 
+void Session::print_available_content()
+{
     for(auto movie : m_available_movies_content){
         std::cout << "\n(MOVIE)\n";
         std::cout << "id: " << movie.get_id() << "\n";
@@ -41,8 +44,6 @@ Session::Session(std::string config_path)
         std::cout << "length: " << movie.get_length()<< "\n\n";
 
     }
-
-
 }
 
 void Session::start()
