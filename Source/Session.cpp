@@ -4,7 +4,12 @@
 Session::Session(std::string config_path)
 :m_json_handler(config_path)
 {
-    m_json_handler.get_doc();
+    // m_json_handler.get_doc();
+
+    rapidjson::Value& movies = m_json_handler.get_doc()["movies"];
+    for(auto& movie : movies.GetArray()){
+        std::cout << "\n" << movie["name"].GetString();
+    }
 }
 
 void Session::start()

@@ -7,12 +7,17 @@
 #include "JsonHandler.h"
 
 class BaseAction;
+class Movies;
+class Episode;
 
 class Session
 {
 
     private:
-        std::vector<Watchable> m_available_watching_content;
+        // std::vector<Watchable> m_available_watching_content;
+        std::vector<Movies> m_available_movies_content;
+        std::vector<Episode> m_available_episodes_content;
+
         std::vector<User> m_users;
         std::vector<User> m_current_active_users;
         // maybe turn into string and have action print the log
