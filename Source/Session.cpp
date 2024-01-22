@@ -27,7 +27,8 @@ void Session::start()
     std::vector<std::string> parsed_user_input;
 
     while(true){
-        parsed_user_input = user_input();
+        parsed_user_input = get_user_input();
+        
         std::cout << "input is: ";
         print_vector<std::string>(parsed_user_input);
     }
@@ -109,7 +110,7 @@ void Session::fill_action_menu()
 
 }
 
-std::vector<std::string> Session::user_input()
+std::vector<std::string> Session::get_user_input()
 {
     std::string user_input;
     std::vector<std::string> result;

@@ -49,7 +49,7 @@ class Session
         void init_default_user();
         void fill_action_menu();
 
-        std::vector<std::string> user_input();
+        std::vector<std::string> get_user_input();
 
     public:
         Session(std::string config_path);
