@@ -1,6 +1,7 @@
 #include "Session.h"
 
 
+// public
 Session::Session(std::string config_path)
 :m_json_handler(config_path)
 {
@@ -12,7 +13,30 @@ Session::Session(std::string config_path)
     m_action_log.reserve(10);
 }
 
+void Session::print_available_content()
+{
+    for(const auto& watchable_content : m_available_watching_content){
+        watchable_content->print_description();
+    }
+}
 
+void Session::start()
+{
+    std::cout << "\nSPLFLIX is now on! \n";
+
+    std::vector<std::string> parsed_user_input;
+
+    while(true){
+        parsed_user_input = user_input();
+        std::cout << "input is: ";
+        print_vector<std::string>(parsed_user_input);
+    }
+
+    
+}
+
+
+// private
 void Session::fill_available_content()
 {
     int id = 0;
@@ -64,7 +88,6 @@ void Session::fill_available_content()
 }
 }
 
-
 void Session::init_default_user()
 {
     m_users.reserve(5);
@@ -84,13 +107,6 @@ void Session::fill_action_menu()
     m_action_menu.emplace_back(std::make_unique<Watch>(Watch()));
     m_action_menu.emplace_back(std::make_unique<Exit>(Exit()));
 
-}
-
-void Session::print_available_content()
-{
-    for(const auto& watchable_content : m_available_watching_content){
-        watchable_content->print_description();
-    }
 }
 
 std::vector<std::string> Session::user_input()
@@ -114,19 +130,3 @@ std::vector<std::string> Session::user_input()
     
     return result;
 }
-
-void Session::start()
-{
-    std::cout << "\nSPLFLIX is now on! \n";
-
-    std::vector<std::string> parsed_user_input;
-
-    while(true){
-        parsed_user_input = user_input();
-        std::cout << "input is: ";
-        print_vector<std::string>(parsed_user_input);
-    }
-
-    
-}
-
