@@ -10,6 +10,7 @@ Session::Session(std::string config_path)
 
 void Session::fill_available_content()
 {
+    int id = 0;
     std::vector<std::string> tags;
     tags.reserve(5);
 
@@ -26,10 +27,11 @@ void Session::fill_available_content()
             tags.push_back(tag.GetString());
         }
 
-        m_available_movies_content.emplace_back(Movies( 1, 
+        m_available_movies_content.emplace_back(Movies( id, 
                                                         movie["name"].GetString(), 
                                                         movie["length"].GetInt(),
                                                         tags));
+        id++;
     }
 
     rapidjson::Value& episodes = m_json_handler.get_doc()["tv_series"];
@@ -45,11 +47,12 @@ void Session::fill_available_content()
             seasons.push_back(season.GetInt());
         }
 
-        m_available_episodes_content.emplace_back(Episode( 1, 
+        m_available_episodes_content.emplace_back(Episode( id, 
                                                             episode["name"].GetString(), 
                                                             episode["episode_length"].GetInt(),
                                                             seasons,
                                                             tags));
+        id++;
 }
 }
 
