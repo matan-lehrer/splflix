@@ -93,19 +93,41 @@ void Session::print_available_content()
     }
 }
 
+std::vector<std::string> Session::user_input()
+{
+    std::string user_input;
+    std::vector<std::string> result;
+
+    std::cout << "\n\n(CHOOSE ACTION) \n\n\n"; 
+
+    for(auto& action : m_action_menu){
+        std::cout << "<" << action->to_string() << "> \n";
+    }
+
+    std::cout << "\n";
+    std::cin >> user_input;
+
+    std::istringstream iss(user_input);
+
+    for(std::string s; iss >> s; )
+        result.push_back(s);
+    
+    return result;
+
+}
 
 void Session::start()
 {
     std::cout << "\nSPLFLIX is now on! \n";
 
-    std::string user_input;
+    std::vector<std::string> parsed_user_input;
+
     while(true){
-        std::cout << "\n\n(CHOOSE ACTION) \n\n\n"; 
-        for(auto& action : m_action_menu){
-            // index++;
-            std::cout << "<" << action->to_string() << "> \n";
-        }
-        std::cout << "\n";
-        std::cin >> user_input;
+        parsed_user_input = user_input();
+        std::cout << "parsed input size is: " << parsed_user_input.size() << "\n";
+        std::cout << "parsed input is: \n";
+        print_vector<std::string>(parsed_user_input);
     }
+
+    
 }

@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <memory>
+#include <sstream>
 #include "Watchable.h"
 #include "User.h"
 #include "Action.h"
@@ -39,15 +40,15 @@ class Session
         JsonHandler m_json_handler;
         std::vector<std::unique_ptr<Watchable>> m_available_watching_content;
         std::vector<std::unique_ptr<User>> m_users;
-
-        std::vector<std::unique_ptr<User>> m_current_active_users;
-        std::vector<std::unique_ptr<BaseAction>> m_action_log;
         std::vector<std::unique_ptr<BaseAction>> m_action_menu;
-         
+        std::vector<std::unique_ptr<User>> m_current_active_users;
+        std::vector<std::unique_ptr<std::string>> m_action_log;         
 
         void fill_available_content();
         void init_default_user();
         void fill_action_menu();
+
+        std::vector<std::string> user_input();
 
     public:
         Session(std::string config_path);
