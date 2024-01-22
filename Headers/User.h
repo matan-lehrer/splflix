@@ -18,6 +18,7 @@ class User
     public:
         User(std::string name);
         virtual Watchable* get_recommendation() = 0;
+        virtual std::string get_name();
 
 };
 
