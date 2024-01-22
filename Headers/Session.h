@@ -20,8 +20,6 @@ class Session
 
         std::vector<User> m_users;
         std::vector<User> m_current_active_users;
-        // maybe turn into string and have action print the log
-        // and use return value to push back vector
         std::vector<BaseAction> m_action_log; 
         JsonHandler m_json_handler;
 
