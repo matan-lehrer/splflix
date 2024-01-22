@@ -31,7 +31,7 @@ class Session
         JsonHandler m_json_handler;
 
         void fill_available_content();
-        void fill_users();
+        void init_default_user();
 
     public:
         Session(std::string config_path);

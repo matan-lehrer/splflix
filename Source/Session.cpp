@@ -5,7 +5,7 @@ Session::Session(std::string config_path)
 :m_json_handler(config_path)
 {
     fill_available_content();
-    fill_users();
+    init_default_user();
 }
 
 
@@ -58,7 +58,7 @@ void Session::fill_available_content()
 }
 
 
-void Session::fill_users()
+void Session::init_default_user()
 {
     m_users.reserve(5);
     m_users.emplace_back(std::make_unique<LengthBasedUser>(LengthBasedUser("default")));
