@@ -15,8 +15,6 @@ class JsonHandler
     public:
         JsonHandler(std::string json_path);
         void print_json() const;
-        void get_movies();
-        void get_episodes();
         rapidjson::Document& get_doc();
 
 };
