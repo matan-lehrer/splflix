@@ -40,7 +40,7 @@ class Session
 
     private:
         JsonHandler m_json_handler;
-        std::map<std::string, std::unique_ptr<BaseAction>> m_action_menu;
+        std::unordered_map<std::string, std::unique_ptr<BaseAction>> m_action_menu;
         std::vector<std::unique_ptr<Watchable>> m_available_watching_content;
         std::vector<std::unique_ptr<User>> m_users;
         std::vector<std::unique_ptr<User>> m_current_active_users;
@@ -54,8 +54,9 @@ class Session
 
     public:
         Session(std::string config_path);
-        void print_available_content();
         void start();
 
         std::vector<std::vector<std::string>> get_action_log() const;
+        const std::vector<std::unique_ptr<Watchable>>& get_available_watching_content() const;
+
 };

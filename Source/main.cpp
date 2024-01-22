@@ -10,11 +10,8 @@ int main(int argc, char **argv)
         exit(1);
     }
 
-
     Session session(argv[1]);
     session.start();
-    // session.print_available_content();
-
     
     return 0;
 }

@@ -17,7 +17,7 @@ void BaseAction::error(std::string err_msg)
 // CreateUser
 void CreateUser::act(Session& sess)
 {
-
+    
 }
 
 std::string CreateUser::to_string()
@@ -65,6 +65,11 @@ std::string DuplicateUser::to_string()
 // PrintContentList
 void PrintContentList::act(Session& sess)
 {
+    std::cout << "\n\n___________(CONTENT LIST)___________ \n";
+    for(const auto& watchable_content : sess.get_available_watching_content()){
+        watchable_content->print_description();
+    }
+    std::cout << "***********************************\n";
 
 }
 

@@ -79,11 +79,10 @@ class PrintWatchHistory : public BaseAction
     public:
         void act(Session& session);
         std::string to_string();
-
 };
 
 
-class Watch : public BaseAction
+class PrintActionLog : public BaseAction
 {
     public:
         void act(Session& session);
@@ -92,7 +91,7 @@ class Watch : public BaseAction
 };
 
 
-class PrintActionLog : public BaseAction
+class Watch : public BaseAction
 {
     public:
         void act(Session& session);

@@ -13,13 +13,6 @@ Session::Session(std::string config_path)
     m_action_log.reserve(10);
 }
 
-void Session::print_available_content()
-{
-    for(const auto& watchable_content : m_available_watching_content){
-        watchable_content->print_description();
-    }
-}
-
 void Session::start()
 {
     std::cout << "\nSPLFLIX is now on! \n";
@@ -49,6 +42,11 @@ void Session::start()
 std::vector<std::vector<std::string>> Session::get_action_log() const
 {
     return m_action_log;
+}
+
+const std::vector<std::unique_ptr<Watchable>>& Session::get_available_watching_content() const
+{
+    return m_available_watching_content;
 }
 
 
@@ -112,15 +110,15 @@ void Session::init_default_user()
 
 void Session::fill_action_menu()
 {
-    m_action_menu.emplace("createuser", std::make_unique<CreateUser>(CreateUser()));
-    m_action_menu.emplace("changeuser", std::make_unique<ChangeActiveUser>(ChangeActiveUser()));
-    m_action_menu.emplace("deleteuser", std::make_unique<DeleteUser>(DeleteUser()));
-    m_action_menu.emplace("dupuser", std::make_unique<DuplicateUser>(DuplicateUser()));
-    m_action_menu.emplace("content", std::make_unique<PrintContentList>(PrintContentList()));
-    m_action_menu.emplace("watchist", std::make_unique<PrintWatchHistory>(PrintWatchHistory()));
-    m_action_menu.emplace("log", std::make_unique<PrintActionLog>(PrintActionLog()));
-    m_action_menu.emplace("watch", std::make_unique<Watch>(Watch()));
     m_action_menu.emplace("exit", std::make_unique<Exit>(Exit()));
+    m_action_menu.emplace("watch", std::make_unique<Watch>(Watch()));
+    m_action_menu.emplace("log", std::make_unique<PrintActionLog>(PrintActionLog()));
+    m_action_menu.emplace("watchist", std::make_unique<PrintWatchHistory>(PrintWatchHistory()));
+    m_action_menu.emplace("content", std::make_unique<PrintContentList>(PrintContentList()));
+    m_action_menu.emplace("dupuser", std::make_unique<DuplicateUser>(DuplicateUser()));
+    m_action_menu.emplace("deleteuser", std::make_unique<DeleteUser>(DeleteUser()));
+    m_action_menu.emplace("changeuser", std::make_unique<ChangeActiveUser>(ChangeActiveUser()));
+    m_action_menu.emplace("createuser", std::make_unique<CreateUser>(CreateUser()));
 }
 
 std::vector<std::string> Session::get_user_input()
