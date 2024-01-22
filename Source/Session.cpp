@@ -6,6 +6,9 @@ Session::Session(std::string config_path)
 {
     fill_available_content();
     init_default_user();
+    
+    m_current_active_users.reserve(5);
+    m_action_log.reserve(10);
 }
 
 
