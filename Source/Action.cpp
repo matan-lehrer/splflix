@@ -113,7 +113,7 @@ std::string Watch::to_string()
 // Exit
 void Exit::act(Session& sess)
 {
-    
+    throw BreakLoopException();
 }
 
 std::string Exit::to_string()

@@ -27,12 +27,22 @@ void Session::start()
     std::vector<std::string> parsed_user_input;
 
 
-    while(true){
-        parsed_user_input = get_user_input();
-        this->m_action_menu[parsed_user_input.at(0)]->act(*this);
-        
-        std::cout << "input is: ";
-        print_vector<std::string>(parsed_user_input);
+    try {
+        while(true){
+            parsed_user_input = get_user_input();
+            std::string action = parsed_user_input.at(0);
+            if(is_valid_action(action)){
+                this->m_action_menu.at(action)->act(*this);
+            }
+            else{
+                std::cout << "no such action! \n " <<
+                             "please try another action ...\n\n";
+            }
+
+        }
+
+    } catch (const BreakLoopException& e) {
+        std::cout << e.what();
     }
 }
 
@@ -128,4 +138,14 @@ std::vector<std::string> Session::get_user_input()
     }
     
     return result;
+}
+
+bool Session::is_valid_action(const std::string action_input)
+{
+    for(auto& action : m_action_menu){
+        if(action_input == action.first){
+            return true;
+        }
+    }
+    return false;
 }

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "Exceptions.h"
 #include "Session.h"
 
 
