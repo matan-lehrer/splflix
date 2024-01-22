@@ -1,6 +1,7 @@
 #pragma once 
 
 #include <vector>
+#include <map>
 #include <memory>
 #include <sstream>
 #include <algorithm>
@@ -41,7 +42,7 @@ class Session
         JsonHandler m_json_handler;
         std::vector<std::unique_ptr<Watchable>> m_available_watching_content;
         std::vector<std::unique_ptr<User>> m_users;
-        std::vector<std::unique_ptr<BaseAction>> m_action_menu;
+        std::map<std::string, std::unique_ptr<BaseAction>> m_action_menu;
         std::vector<std::unique_ptr<User>> m_current_active_users;
         std::vector<std::unique_ptr<std::string>> m_action_log;         
 

@@ -86,18 +86,6 @@ std::string PrintWatchHistory::to_string()
 }
 
 
-// Watch
-void Watch::act(Session& sess)
-{
-
-}
-
-std::string Watch::to_string()
-{
-    return "watch";
-}
-
-
 // PrintActionLog
 void PrintActionLog::act(Session& sess)
 {
@@ -110,10 +98,22 @@ std::string PrintActionLog::to_string()
 }
 
 
+// Watch
+void Watch::act(Session& sess)
+{
+
+}
+
+std::string Watch::to_string()
+{
+    return "watch";
+}
+
+
 // Exit
 void Exit::act(Session& sess)
 {
-
+    
 }
 
 std::string Exit::to_string()

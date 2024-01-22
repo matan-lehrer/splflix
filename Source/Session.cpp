@@ -26,14 +26,14 @@ void Session::start()
 
     std::vector<std::string> parsed_user_input;
 
+
     while(true){
         parsed_user_input = get_user_input();
+        this->m_action_menu[parsed_user_input.at(0)]->act(*this);
         
         std::cout << "input is: ";
         print_vector<std::string>(parsed_user_input);
     }
-
-    
 }
 
 
@@ -97,17 +97,15 @@ void Session::init_default_user()
 
 void Session::fill_action_menu()
 {
-    m_action_menu.reserve(10);
-    m_action_menu.emplace_back(std::make_unique<CreateUser>(CreateUser()));
-    m_action_menu.emplace_back(std::make_unique<ChangeActiveUser>(ChangeActiveUser()));
-    m_action_menu.emplace_back(std::make_unique<DeleteUser>(DeleteUser()));
-    m_action_menu.emplace_back(std::make_unique<DuplicateUser>(DuplicateUser()));
-    m_action_menu.emplace_back(std::make_unique<PrintContentList>(PrintContentList()));
-    m_action_menu.emplace_back(std::make_unique<PrintWatchHistory>(PrintWatchHistory()));
-    m_action_menu.emplace_back(std::make_unique<PrintActionLog>(PrintActionLog()));
-    m_action_menu.emplace_back(std::make_unique<Watch>(Watch()));
-    m_action_menu.emplace_back(std::make_unique<Exit>(Exit()));
-
+    m_action_menu.emplace("createuser", std::make_unique<CreateUser>(CreateUser()));
+    m_action_menu.emplace("changeuser", std::make_unique<ChangeActiveUser>(ChangeActiveUser()));
+    m_action_menu.emplace("deleteuser", std::make_unique<DeleteUser>(DeleteUser()));
+    m_action_menu.emplace("dupuser", std::make_unique<DuplicateUser>(DuplicateUser()));
+    m_action_menu.emplace("content", std::make_unique<PrintContentList>(PrintContentList()));
+    m_action_menu.emplace("watchist", std::make_unique<PrintWatchHistory>(PrintWatchHistory()));
+    m_action_menu.emplace("log", std::make_unique<PrintActionLog>(PrintActionLog()));
+    m_action_menu.emplace("watch", std::make_unique<Watch>(Watch()));
+    m_action_menu.emplace("exit", std::make_unique<Exit>(Exit()));
 }
 
 std::vector<std::string> Session::get_user_input()
@@ -118,7 +116,7 @@ std::vector<std::string> Session::get_user_input()
     std::cout << "\n\n(CHOOSE ACTION) \n\n\n"; 
 
     for(auto& action : m_action_menu){
-        std::cout << "<" << action->to_string() << "> \n";
+        std::cout << "<" << action.second->to_string() << "> \n";
     }
     std::cout << "\n";
     
