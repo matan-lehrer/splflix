@@ -9,6 +9,8 @@
 #include "Utilities.h"
 
 class BaseAction;
+
+class Watchable;
 class Movies;
 class Episode;
 
@@ -21,11 +23,9 @@ class Session
 {
 
     private:
-        // std::vector<Watchable> m_available_watching_content;
-        std::vector<Movies> m_available_movies_content;
-        std::vector<Episode> m_available_episodes_content;
-
+        std::vector<std::unique_ptr<Watchable>> m_available_watching_content;
         std::vector<std::unique_ptr<User>> m_users;
+
         std::vector<User> m_current_active_users;
         std::vector<BaseAction> m_action_log; 
         JsonHandler m_json_handler;

@@ -11,14 +11,15 @@ Session::Session(std::string config_path)
 
 void Session::fill_available_content()
 {
+
+    m_available_watching_content.reserve(15);
+
     int id = 0;
     std::vector<std::string> tags;
     tags.reserve(5);
 
     std::vector<int> seasons;
     tags.reserve(10);
-
-    m_available_movies_content.reserve(10);
 
     rapidjson::Value& movies = m_json_handler.get_doc()["movies"];
     for(auto& movie : movies.GetArray()){
@@ -28,10 +29,11 @@ void Session::fill_available_content()
             tags.push_back(tag.GetString());
         }
 
-        m_available_movies_content.emplace_back(Movies( id, 
-                                                        movie["name"].GetString(), 
-                                                        movie["length"].GetInt(),
-                                                        tags));
+        m_available_watching_content.emplace_back(
+            std::make_unique<Movies>( Movies(  id, 
+                                                movie["name"].GetString(), 
+                                                movie["length"].GetInt(),
+                                                tags)));
         id++;
     }
 
@@ -48,11 +50,12 @@ void Session::fill_available_content()
             seasons.push_back(season.GetInt());
         }
 
-        m_available_episodes_content.emplace_back(Episode( id, 
-                                                            episode["name"].GetString(), 
-                                                            episode["episode_length"].GetInt(),
-                                                            seasons,
-                                                            tags));
+        m_available_watching_content.emplace_back(
+            std::make_unique<Episode>(Episode(  id, 
+                                                episode["name"].GetString(), 
+                                                episode["episode_length"].GetInt(),
+                                                seasons,
+                                                tags)));
         id++;
 }
 }
@@ -70,32 +73,32 @@ void Session::init_default_user()
 
 void Session::print_available_content()
 {
-    for(auto movie : m_available_movies_content){
-        std::cout << "\n(MOVIE)\n";
-        std::cout << "id: " << movie.get_id() << "\n";
-        std::cout << "name: " << movie.get_name()<< "\n";
-        std::cout << "first tag: " << movie.get_tags().at(0) << "\n";
-        std::cout << "length: " << movie.get_length()<< "\n";
-        std::cout << "tags: ";
-        print_vector<std::string>(movie.get_tags());
-        std::cout << "\n";
-    }
+    // for(auto movie : m_available_movies_content){
+    //     std::cout << "\n(MOVIE)\n";
+    //     std::cout << "id: " << movie.get_id() << "\n";
+    //     std::cout << "name: " << movie.get_name()<< "\n";
+    //     std::cout << "first tag: " << movie.get_tags().at(0) << "\n";
+    //     std::cout << "length: " << movie.get_length()<< "\n";
+    //     std::cout << "tags: ";
+    //     print_vector<std::string>(movie.get_tags());
+    //     std::cout << "\n";
+    // }
 
-    for(auto episode : m_available_episodes_content){
-        std::cout << "\n(Episode)\n";
-        std::cout << "id: " << episode.get_id() << "\n";
-        std::cout << "name: " << episode.get_name()<< "\n";
-        std::cout << "length: " << episode.get_length()<< "\n";
+    // for(auto episode : m_available_episodes_content){
+    //     std::cout << "\n(Episode)\n";
+    //     std::cout << "id: " << episode.get_id() << "\n";
+    //     std::cout << "name: " << episode.get_name()<< "\n";
+    //     std::cout << "length: " << episode.get_length()<< "\n";
         
-        std::cout << "seasons: ";
-        print_vector<int>(episode.get_seasons());
+    //     std::cout << "seasons: ";
+    //     print_vector<int>(episode.get_seasons());
         
-        std::cout << "tags: ";
-        print_vector<std::string>(episode.get_tags());
+    //     std::cout << "tags: ";
+    //     print_vector<std::string>(episode.get_tags());
         
-        std::cout << "\n";
+    //     std::cout << "\n";
 
-    }
+    // }
 }
 
 
