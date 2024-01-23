@@ -16,8 +16,29 @@ void BaseAction::error(std::string err_msg)
 
 // CreateUser
 void CreateUser::act(Session& sess)
+// use here builder pattern! gets 3 - letters and returns instance of...
 {
+    const std::string user_name = sess.get_parsed_user_input().at(1);
+    const std::string recomendation = sess.get_parsed_user_input().at(2);
+
+    if("len" == recomendation){
+        std::shared_ptr<User> new_user = std::make_shared<LengthBasedUser>(LengthBasedUser(user_name));
+        sess.get_users_list().emplace_back(new_user);
+    }
+
+    else if("rer" == recomendation){
+        std::shared_ptr<User> new_user = std::make_shared<RerunBasedUser>(RerunBasedUser(user_name));
+        sess.get_users_list().emplace_back(new_user);
+    }
+
+    else if("gen" == recomendation){
+        std::shared_ptr<User> new_user = std::make_shared<SimilarGenreBasedUser>(SimilarGenreBasedUser(user_name));
+        sess.get_users_list().emplace_back(new_user);
+    }
     
+    else{
+        error("no such recomendation...");
+    }
 }
 
 std::string CreateUser::to_string()
@@ -29,7 +50,7 @@ std::string CreateUser::to_string()
 // ChangeActiveUser
 void ChangeActiveUser::act(Session& sess)
 {
-
+    const std::string user_name = sess.get_parsed_user_input().at(1);
 }
 
 std::string ChangeActiveUser::to_string()
