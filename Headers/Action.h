@@ -21,7 +21,7 @@ enum Flag
 class BaseAction
 {
     protected:
-        Flag status;
+        Flag status = PENDING;
 
         void complete();
         void error(std::string err_msg);

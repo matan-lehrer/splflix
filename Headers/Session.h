@@ -44,7 +44,8 @@ class Session
         std::vector<std::unique_ptr<Watchable>> m_available_watching_content;
         std::shared_ptr<User> m_current_active_users;
         std::vector<std::shared_ptr<User>> m_users;
-        std::vector<std::vector<std::string>> m_action_log;         
+        std::vector<std::vector<std::string>> m_action_log; 
+        std::vector<std::string> m_parsed_user_input;        
 
         void fill_available_content();
         void init_default_user();
@@ -58,5 +59,6 @@ class Session
 
         const std::vector<std::vector<std::string>>& get_action_log() const;
         const std::vector<std::unique_ptr<Watchable>>& get_available_watching_content() const;
-
+        std::vector<std::shared_ptr<User>>& get_users_list();
+        const std::vector<std::string>& get_parsed_user_input() const;        
 };

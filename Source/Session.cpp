@@ -16,14 +16,13 @@ void Session::start()
 {
     std::cout << "\nSPLFLIX is now on! \n";
 
-    std::vector<std::string> parsed_user_input;
     try {
         while(true) {
-            parsed_user_input = get_user_input();
-            std::string action = parsed_user_input.at(0);
+            m_parsed_user_input = get_user_input();
+            std::string action = m_parsed_user_input.at(0);
 
             if(is_valid_action(action)){
-                m_action_log.push_back(parsed_user_input);
+                m_action_log.push_back(m_parsed_user_input);
                 this->m_action_menu.at(action)->act(*this);
             }
 
@@ -48,7 +47,15 @@ const std::vector<std::unique_ptr<Watchable>>& Session::get_available_watching_c
     return m_available_watching_content;
 }
 
+std::vector<std::shared_ptr<User>>& Session::get_users_list()
+{
+    return m_users;
+}
 
+const std::vector<std::string>& Session::get_parsed_user_input() const
+{
+    return m_parsed_user_input;
+}
 
 
 // private

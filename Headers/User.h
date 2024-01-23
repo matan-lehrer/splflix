@@ -11,8 +11,6 @@ class User
 {
     protected:
         std::string m_name;
-        // maybe hold only string
-        // and have method in other class that returns watch string
         std::vector<Watchable> m_watch_history;
     
     public:
@@ -28,7 +26,6 @@ class LengthBasedUser : public User
     public:
         LengthBasedUser(std::string name);
         Watchable* get_recommendation();
-
 };
 
 
