@@ -183,7 +183,26 @@ std::string PrintActionLog::to_string()
 // Watch
 void Watch::act(Session& sess)
 {
+    const int content_id = std::stoi(sess.get_parsed_user_input().at(1));
 
+    std::cout << "don't fucking ignore me!\n";
+    std::cout << content_id << "\n";
+    std::cout << sess.get_available_watching_content().size() << "\n";
+
+
+    for(const auto& content : sess.get_available_watching_content()){
+        std::cout << "still fucking here!\n";
+        std::cout << content->get_id() << "\n";
+
+        if(content_id == content->get_id()){
+            std::cout << "made it fucking here!\n";
+            std::cout << "(WATCHING - " << content->get_name() << ") \n";
+            content->print_description();
+            
+    
+            break;
+        }
+    }
 }
 
 std::string Watch::to_string()
