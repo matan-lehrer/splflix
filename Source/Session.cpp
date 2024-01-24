@@ -37,6 +37,8 @@ void Session::start()
     }
 }
 
+
+// getters
 const std::vector<std::vector<std::string>>& Session::get_action_log() const
 {
     return m_action_log;
@@ -47,7 +49,7 @@ const std::vector<std::unique_ptr<Watchable>>& Session::get_available_watching_c
     return m_available_watching_content;
 }
 
-std::vector<std::shared_ptr<User>>& Session::get_users_list()
+std::map<std::string, std::shared_ptr<User>>& Session::get_users_map()
 {
     return m_users;
 }
@@ -56,6 +58,19 @@ const std::vector<std::string>& Session::get_parsed_user_input() const
 {
     return m_parsed_user_input;
 }
+
+std::shared_ptr<User>& Session::get_current_active_user()
+{
+    return m_current_active_user;
+}
+
+
+// setters
+void Session::set_current_active_user(std::shared_ptr<User> next_user)
+{
+    m_current_active_user = next_user;
+}
+
 
 
 // private
@@ -112,9 +127,8 @@ void Session::fill_available_content()
 
 void Session::init_default_user()
 {
-    m_users.reserve(5);
-    m_current_active_users = std::make_shared<LengthBasedUser>(LengthBasedUser("default"));
-    m_users.emplace_back(m_current_active_users);
+    m_current_active_user = std::make_shared<LengthBasedUser>(LengthBasedUser("default"));
+    m_users.emplace(m_current_active_user->get_name(), m_current_active_user);
 
 }
 

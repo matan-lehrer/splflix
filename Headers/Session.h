@@ -41,12 +41,13 @@ class Session
     private:
         JsonHandler m_json_handler;
         std::unordered_map<std::string, std::unique_ptr<BaseAction>> m_action_menu;
+        std::map<std::string, std::shared_ptr<User>> m_users;
+        std::shared_ptr<User> m_current_active_user;
         std::vector<std::unique_ptr<Watchable>> m_available_watching_content;
-        std::shared_ptr<User> m_current_active_users;
-        std::vector<std::shared_ptr<User>> m_users; // switch to map!
         std::vector<std::vector<std::string>> m_action_log; 
         std::vector<std::string> m_parsed_user_input;        
 
+        // private - functions
         void fill_available_content();
         void init_default_user();
         void fill_action_menu();
@@ -57,8 +58,13 @@ class Session
         Session(std::string config_path);
         void start();
 
+        // getters
         const std::vector<std::vector<std::string>>& get_action_log() const;
         const std::vector<std::unique_ptr<Watchable>>& get_available_watching_content() const;
-        std::vector<std::shared_ptr<User>>& get_users_list();
-        const std::vector<std::string>& get_parsed_user_input() const;        
+        std::map<std::string, std::shared_ptr<User>>& get_users_map();
+        const std::vector<std::string>& get_parsed_user_input() const;  
+        std::shared_ptr<User>& get_current_active_user();    
+
+        //setters
+        void set_current_active_user(std::shared_ptr<User>);
 };
