@@ -74,12 +74,12 @@ class PrintContentList : public BaseAction
 };
 
 
-// class PrintUsersList : public BaseAction
-// {
-//     public:
-//         void act(Session& session);
-//         std::string to_string();
-// };
+class PrintUsersList : public BaseAction
+{
+    public:
+        void act(Session& session);
+        std::string to_string();
+};
 
 
 class PrintWatchHistory : public BaseAction

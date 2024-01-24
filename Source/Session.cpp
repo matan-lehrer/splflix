@@ -138,6 +138,7 @@ void Session::fill_action_menu()
     m_action_menu.emplace("watch", std::make_unique<Watch>(Watch()));
     m_action_menu.emplace("log", std::make_unique<PrintActionLog>(PrintActionLog()));
     m_action_menu.emplace("watchist", std::make_unique<PrintWatchHistory>(PrintWatchHistory()));
+    m_action_menu.emplace("users", std::make_unique<PrintUsersList>(PrintUsersList()));
     m_action_menu.emplace("content", std::make_unique<PrintContentList>(PrintContentList()));
     m_action_menu.emplace("dupuser", std::make_unique<DuplicateUser>(DuplicateUser()));
     m_action_menu.emplace("deleteuser", std::make_unique<DeleteUser>(DeleteUser()));

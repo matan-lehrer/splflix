@@ -42,7 +42,7 @@ void CreateUser::act(Session& sess)
         return;
     }
 
-    new_user->print_details();
+    PrintUsersList().act(sess);
 }
 
 std::string CreateUser::to_string()
@@ -57,7 +57,7 @@ void ChangeActiveUser::act(Session& sess)
     const std::string user_name = sess.get_parsed_user_input().at(1);
     std::shared_ptr<User> next_user = sess.get_users_map().at(user_name);
     sess.set_current_active_user(next_user);
-    next_user->print_details();
+    PrintUsersList().act(sess);
 }
 
 std::string ChangeActiveUser::to_string()
@@ -104,6 +104,30 @@ void PrintContentList::act(Session& sess)
 std::string PrintContentList::to_string()
 {
     return "content";
+}
+
+
+// PrintUsersList
+void PrintUsersList::act(Session& sess)
+{   
+    int index = 1;
+    std::cout << "\n\n___________(USERS DETAILS)___________ \n\n";
+    
+    for(const auto& user : sess.get_users_map()){
+
+        if(user.second == sess.get_current_active_user()){
+            std::cout << "(CURRENT ACTIVE USER)\n";
+        }
+        std::cout << index << ". user name: " << user.first << "\n";
+        std::cout << "  user recomenmdation is " << user.second->recomendation_stringified() << "\n\n";
+        index++;
+    }
+    std::cout << "*************************************\n";
+}
+
+std::string PrintUsersList::to_string()
+{
+    return "users";
 }
 
 

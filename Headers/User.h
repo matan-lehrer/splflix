@@ -17,7 +17,7 @@ class User
         User(std::string name);
         virtual Watchable* get_recommendation() = 0;
         virtual std::string get_name();
-        virtual void print_details() = 0;
+        virtual std::string recomendation_stringified() = 0;
 
 };
 
@@ -27,7 +27,8 @@ class LengthBasedUser : public User
     public:
         LengthBasedUser(std::string name);
         Watchable* get_recommendation();
-        void print_details();
+        std::string recomendation_stringified();
+
 };
 
 
@@ -36,7 +37,7 @@ class RerunBasedUser : public User
     public:
         RerunBasedUser(std::string name);
         Watchable* get_recommendation();
-        void print_details();
+        std::string recomendation_stringified();
 };
 
 
@@ -45,5 +46,5 @@ class SimilarGenreBasedUser : public User
     public:
         SimilarGenreBasedUser(std::string name);
         Watchable* get_recommendation();
-        void print_details();
+        std::string recomendation_stringified();
 };
