@@ -12,6 +12,10 @@ std::string User::get_name()
     return this->m_name;
 }
 
+void User::set_name(std::string new_name)
+{
+    m_name = new_name;
+}
 
 // LengthBasedUser
 LengthBasedUser::LengthBasedUser(std::string name)

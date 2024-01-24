@@ -71,9 +71,9 @@ std::shared_ptr<User>& Session::get_user(std::string name)
 
 
 // setters
-void Session::set_current_active_user(std::shared_ptr<User> next_user)
+void Session::set_current_active_user(std::string next_user)
 {
-    m_current_active_user = next_user;
+    m_current_active_user = m_users[next_user];
 }
 
 void Session::add_users_map(std::string name, std::shared_ptr<User>& new_user)
