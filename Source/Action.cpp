@@ -68,11 +68,6 @@ void DeleteUser::act(Session& sess)
 {
     const std::string user_name = sess.get_parsed_user_input().at(1);
 
-    if(user_name == "default"){
-        error("can't delete default user...");
-        return;
-    }
-
     if(sess.get_user(user_name) == sess.get_current_active_user()){
         error("can't delete current active user...");
         return;
@@ -152,7 +147,11 @@ std::string PrintUsersList::to_string()
 // PrintWatchHistory
 void PrintWatchHistory::act(Session& sess)
 {
-
+    std::cout << "\n\n___________(WATCH HISTORY FOR - "<< sess.get_current_active_user()->get_name() << ")___________ \n";
+    for(const auto& watchable_content : sess.get_current_active_user()->get_watch_history()){
+        watchable_content->print_description();
+    }
+    std::cout << "***************************************************\n";
 }
 
 std::string PrintWatchHistory::to_string()

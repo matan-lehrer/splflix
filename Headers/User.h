@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <vector>
 #include <string>
 #include "Watchable.h"
@@ -17,6 +16,7 @@ class User
         User(std::string name);
         std::string get_name();
         void set_name(std::string new_name);
+        std::vector<std::shared_ptr<Watchable>>& get_watch_history();
 
         virtual std::shared_ptr<User> clone() const = 0;
         virtual Watchable* get_recommendation() = 0;

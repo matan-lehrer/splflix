@@ -17,6 +17,11 @@ void User::set_name(std::string new_name)
     m_name = new_name;
 }
 
+std::vector<std::shared_ptr<Watchable>>& User::get_watch_history()
+{
+    return m_watch_history;
+}
+
 // LengthBasedUser
 LengthBasedUser::LengthBasedUser(std::string name)
 :User(name)
