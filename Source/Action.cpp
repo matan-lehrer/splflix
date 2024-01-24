@@ -70,7 +70,9 @@ void DeleteUser::act(Session& sess)
 
         if(sess.get_user(user_name) == sess.get_current_active_user()){
             sess.set_current_active_user("default");
+            // sess.get_users_map()[0]->get_name();
         }
+        
     sess.get_users_map().erase(user_name);
     PrintUsersList().act(sess);
 
@@ -88,13 +90,14 @@ void DuplicateUser::act(Session& sess)
     const std::string old_name = sess.get_parsed_user_input().at(1);
     const std::string new_name = sess.get_parsed_user_input().at(2);
     
-    std::shared_ptr<User> new_user = sess.get_user(old_name);
+    std::shared_ptr<User> new_user = sess.get_user(old_name)->clone();
     new_user->set_name(new_name);
     sess.add_users_map(new_name, new_user);
 
-    if(new_user == sess.get_current_active_user()){
-            sess.set_current_active_user(old_name);
-    }
+    std::cout << "is same address: " << (new_user == sess.get_user(old_name)) << " \n";
+    // if(new_user == sess.get_current_active_user()){
+    //         sess.set_current_active_user(old_name);
+    // }
 
     PrintUsersList().act(sess);
 

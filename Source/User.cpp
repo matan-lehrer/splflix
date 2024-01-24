@@ -33,6 +33,11 @@ std::string LengthBasedUser::recomendation_stringified()
     return "length based";
 }
 
+std::shared_ptr<User> LengthBasedUser::clone() const
+{
+    return std::make_shared<LengthBasedUser>(*this);
+}
+
 
 // RerunBasedUser
 RerunBasedUser::RerunBasedUser(std::string name)
@@ -50,6 +55,11 @@ std::string RerunBasedUser::recomendation_stringified()
     return "rerun based";
 }
 
+std::shared_ptr<User> RerunBasedUser::clone() const
+{
+    return std::make_shared<RerunBasedUser>(*this);
+}
+
 
 // SimilarGenreBasedUser
 SimilarGenreBasedUser::SimilarGenreBasedUser(std::string name)
@@ -65,4 +75,9 @@ Watchable* SimilarGenreBasedUser::get_recommendation()
 std::string SimilarGenreBasedUser::recomendation_stringified()
 {
     return "similar genre based";
+}
+
+std::shared_ptr<User> SimilarGenreBasedUser::clone() const
+{
+    return std::make_shared<SimilarGenreBasedUser>(*this);
 }

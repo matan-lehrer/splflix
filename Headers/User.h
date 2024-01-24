@@ -11,15 +11,17 @@ class User
 {
     protected:
         std::string m_name;
-        std::vector<Watchable> m_watch_history;
+        std::vector<std::shared_ptr<Watchable>> m_watch_history;
     
     public:
         User(std::string name);
-        virtual Watchable* get_recommendation() = 0;
         std::string get_name();
         void set_name(std::string new_name);
 
+        virtual std::shared_ptr<User> clone() const = 0;
+        virtual Watchable* get_recommendation() = 0;
         virtual std::string recomendation_stringified() = 0;
+
 
 };
 
@@ -30,6 +32,7 @@ class LengthBasedUser : public User
         LengthBasedUser(std::string name);
         Watchable* get_recommendation();
         std::string recomendation_stringified();
+        std::shared_ptr<User> clone() const;
 
 };
 
@@ -40,6 +43,7 @@ class RerunBasedUser : public User
         RerunBasedUser(std::string name);
         Watchable* get_recommendation();
         std::string recomendation_stringified();
+        std::shared_ptr<User> clone() const;
 };
 
 
@@ -49,4 +53,5 @@ class SimilarGenreBasedUser : public User
         SimilarGenreBasedUser(std::string name);
         Watchable* get_recommendation();
         std::string recomendation_stringified();
+        std::shared_ptr<User> clone() const;
 };
