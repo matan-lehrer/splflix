@@ -10,14 +10,14 @@ class User
 {
     protected:
         std::string m_name;
-        std::vector<std::shared_ptr<Watchable>> m_watch_history;
+        std::vector<std::string> m_watch_history;
     
     public:
         User(std::string name);
         std::string get_name();
         void set_name(std::string new_name);
-        std::vector<std::shared_ptr<Watchable>>& get_watch_history();
-        // void add_watch_history();
+        std::vector<std::string>& get_watch_history();
+        void add_watch_history(std::string description);
 
         virtual std::shared_ptr<User> clone() const = 0;
         virtual Watchable* get_recommendation() = 0;

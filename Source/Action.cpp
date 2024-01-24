@@ -147,11 +147,14 @@ std::string PrintUsersList::to_string()
 // PrintWatchHistory
 void PrintWatchHistory::act(Session& sess)
 {
-    std::cout << "\n\n___________(WATCH HISTORY FOR - "<< sess.get_current_active_user()->get_name() << ")___________ \n";
+    int index = 1;
+    std::cout << "\n\n___________(WATCH HISTORY FOR - "<< sess.get_current_active_user()->get_name() << ")___________ \n\n";
+    
     for(const auto& watchable_content : sess.get_current_active_user()->get_watch_history()){
-        watchable_content->print_description();
+        std::cout << index << ". [" << watchable_content << "] \n";
+        index++;
     }
-    std::cout << "***************************************************\n";
+    std::cout << "\n\n***************************************************\n";
 }
 
 std::string PrintWatchHistory::to_string()
@@ -185,24 +188,15 @@ void Watch::act(Session& sess)
 {
     const int content_id = std::stoi(sess.get_parsed_user_input().at(1));
 
-    std::cout << "don't fucking ignore me!\n";
-    std::cout << content_id << "\n";
-    std::cout << sess.get_available_watching_content().size() << "\n";
-
-
     for(const auto& content : sess.get_available_watching_content()){
-        std::cout << "still fucking here!\n";
-        std::cout << content->get_id() << "\n";
-
         if(content_id == content->get_id()){
-            std::cout << "made it fucking here!\n";
             std::cout << "(WATCHING - " << content->get_name() << ") \n";
             content->print_description();
-            
-    
+            sess.get_current_active_user()->add_watch_history(content->get_name());
             break;
         }
     }
+    PrintWatchHistory().act(sess);
 }
 
 std::string Watch::to_string()
