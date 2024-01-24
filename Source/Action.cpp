@@ -68,11 +68,16 @@ void DeleteUser::act(Session& sess)
 {
     const std::string user_name = sess.get_parsed_user_input().at(1);
 
-        if(sess.get_user(user_name) == sess.get_current_active_user()){
-            sess.set_current_active_user("default");
-            // sess.get_users_map()[0]->get_name();
-        }
-        
+    if(user_name == "default"){
+        error("can't delete default user...");
+        return;
+    }
+
+    if(sess.get_user(user_name) == sess.get_current_active_user()){
+        error("can't delete current active user...");
+        return;
+    }
+
     sess.get_users_map().erase(user_name);
     PrintUsersList().act(sess);
 
@@ -94,13 +99,7 @@ void DuplicateUser::act(Session& sess)
     new_user->set_name(new_name);
     sess.add_users_map(new_name, new_user);
 
-    std::cout << "is same address: " << (new_user == sess.get_user(old_name)) << " \n";
-    // if(new_user == sess.get_current_active_user()){
-    //         sess.set_current_active_user(old_name);
-    // }
-
     PrintUsersList().act(sess);
-
 }
 
 std::string DuplicateUser::to_string()
