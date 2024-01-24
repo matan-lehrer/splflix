@@ -64,7 +64,9 @@ class Session
         std::map<std::string, std::shared_ptr<User>>& get_users_map();
         const std::vector<std::string>& get_parsed_user_input() const;  
         std::shared_ptr<User>& get_current_active_user();    
+        std::shared_ptr<User>& get_user(std::string name);
 
         //setters
         void set_current_active_user(std::shared_ptr<User>);
+        void add_users_map(std::string name, std::shared_ptr<User>& new_user);
 };

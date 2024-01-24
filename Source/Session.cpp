@@ -64,6 +64,11 @@ std::shared_ptr<User>& Session::get_current_active_user()
     return m_current_active_user;
 }
 
+std::shared_ptr<User>& Session::get_user(std::string name)
+{
+    return m_users[name];
+}
+
 
 // setters
 void Session::set_current_active_user(std::shared_ptr<User> next_user)
@@ -71,6 +76,10 @@ void Session::set_current_active_user(std::shared_ptr<User> next_user)
     m_current_active_user = next_user;
 }
 
+void Session::add_users_map(std::string name, std::shared_ptr<User>& new_user)
+{
+    m_users.emplace(name, new_user);
+}
 
 
 // private
