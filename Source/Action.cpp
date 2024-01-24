@@ -20,25 +20,29 @@ void CreateUser::act(Session& sess)
 {
     const std::string user_name = sess.get_parsed_user_input().at(1);
     const std::string recomendation = sess.get_parsed_user_input().at(2);
+    std::shared_ptr<User> new_user;
 
     if("len" == recomendation){
-        std::shared_ptr<User> new_user = std::make_shared<LengthBasedUser>(LengthBasedUser(user_name));
+        new_user = std::make_shared<LengthBasedUser>(LengthBasedUser(user_name));
         sess.get_users_map().emplace(new_user->get_name(), new_user);
     }
 
     else if("rer" == recomendation){
-        std::shared_ptr<User> new_user = std::make_shared<RerunBasedUser>(RerunBasedUser(user_name));
+        new_user = std::make_shared<RerunBasedUser>(RerunBasedUser(user_name));
         sess.get_users_map().emplace(new_user->get_name(), new_user);
     }
 
     else if("gen" == recomendation){
-        std::shared_ptr<User> new_user = std::make_shared<SimilarGenreBasedUser>(SimilarGenreBasedUser(user_name));
+        new_user = std::make_shared<SimilarGenreBasedUser>(SimilarGenreBasedUser(user_name));
         sess.get_users_map().emplace(new_user->get_name(), new_user);
     }
     
     else{
         error("no such recomendation...");
+        return;
     }
+
+    new_user->print_details();
 }
 
 std::string CreateUser::to_string()
@@ -51,7 +55,9 @@ std::string CreateUser::to_string()
 void ChangeActiveUser::act(Session& sess)
 {
     const std::string user_name = sess.get_parsed_user_input().at(1);
-    sess.set_current_active_user(sess.get_users_map().at(user_name));
+    std::shared_ptr<User> next_user = sess.get_users_map().at(user_name);
+    sess.set_current_active_user(next_user);
+    next_user->print_details();
 }
 
 std::string ChangeActiveUser::to_string()

@@ -48,8 +48,8 @@ class Session
         std::vector<std::string> m_parsed_user_input;        
 
         // private - functions
-        void fill_available_content();
         void init_default_user();
+        void fill_available_content();
         void fill_action_menu();
         bool is_valid_action(const std::string action_input);
         std::vector<std::string> get_user_input();
