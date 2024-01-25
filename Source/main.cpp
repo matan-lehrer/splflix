@@ -1,4 +1,8 @@
 #include "Session.h"
+#include "Tests.h"
+
+
+constexpr bool DEBUGGING = true;
 
 
 int main(int argc, char **argv) 
@@ -11,7 +15,14 @@ int main(int argc, char **argv)
     }
 
     Session session(argv[1]);
-    session.start();
+    
+    if(!DEBUGGING){
+        session.start();
+    }
+
+    else{
+        run_tests(session);
+    }
     
     return 0;
 }

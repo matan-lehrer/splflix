@@ -187,7 +187,7 @@ std::string PrintActionLog::to_string()
 void Watch::act(Session& sess)
 {
     const int content_id = std::stoi(sess.get_parsed_user_input().at(1));
-
+    
     for(const auto& content : sess.get_available_watching_content()){
         if(content_id == content->get_id()){
             std::cout << "(WATCHING - " << content->get_name() << ") \n";
