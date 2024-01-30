@@ -1,15 +1,16 @@
 #pragma once 
 
-#include <vector>
+#include <algorithm>
 #include <map>
 #include <memory>
 #include <sstream>
-#include <algorithm>
-#include "Watchable.h"
-#include "User.h"
+#include <vector>
+
 #include "Action.h"
 #include "JsonHandler.h"
+#include "User.h"
 #include "Utilities.h"
+#include "Watchable.h"
 
 // Actions
 class BaseAction;
@@ -55,7 +56,7 @@ class Session
         std::vector<std::string> get_user_input();
 
     public:
-        Session(std::string config_path);
+        Session(const std::string config_path);
         void start();
 
         // getters

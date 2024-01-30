@@ -2,7 +2,7 @@
 
 
 // public
-Session::Session(std::string config_path)
+Session::Session(const std::string config_path)
 :m_json_handler(config_path)
 {
     init_default_user();
@@ -59,7 +59,7 @@ const std::vector<std::string>& Session::get_parsed_user_input() const
     return m_parsed_user_input;
 }
 
-std::shared_ptr<User>& Session::get_current_active_user()
+std::shared_ptr<User>& Session::get_current_active_user() 
 {
     return m_current_active_user;
 }

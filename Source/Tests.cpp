@@ -3,7 +3,7 @@
 
 void run_tests(Session& sess)
 {
-    std::cout << "\n______________(PREFORMING TESTS)______________ \n\n";
+    std::cout << "\n______________(PERFORMING TESTS)______________ \n\n";
 
     // test_watch();
     // test_watchist();
@@ -24,11 +24,4 @@ void run_tests(Session& sess)
     // test_users();
 
     // test_exit();
-
-
-
-
-
-    
-
 }

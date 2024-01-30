@@ -2,7 +2,7 @@
 #include "Tests.h"
 
 
-constexpr bool DEBUGGING = true;
+constexpr bool DEBUGGING = false;
 
 
 int main(int argc, char **argv) 
