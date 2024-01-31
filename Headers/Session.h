@@ -71,3 +71,4 @@ class Session
         void set_current_active_user(std::string next_user);
         void add_users_map(std::string name, std::shared_ptr<User>& new_user);
 };
+ 
