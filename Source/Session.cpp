@@ -121,6 +121,8 @@ void Session::fill_available_content()
         }
 
         seasons.clear();
+        // add counter of Seasons, and from episode["seasons"].GetArray() get number of episodes.
+        // then concat to name of episode in format "<name of tv_series> [S02 , E03]".
         for (auto& season : episode["seasons"].GetArray()) {
             seasons.push_back(season.GetInt());
         }

@@ -12,6 +12,9 @@ TODO:
 5. exception handling.
 6. make sure all pointers are sent and recieved properly.
 7. separate episodes to container of episodes instead of watch series.
+    a. fix in class episode private data structure to hold episodes
+    b. class Session - fill content - modify vector filing.
+
 
 
 IDEAS TO EXPAND PROJECT:
